@@ -261,7 +261,7 @@ static yajl_callbacks callbacks = {
 		return YAJLParserStatusError;
 	} else if (status == yajl_status_error) {
 		unsigned char *errorMessage = yajl_get_error(_handle, 1, data.bytes, (unsigned int) data.length);
-		NSString *errorString = @((char *)errorMessage);
+        NSString *errorString = [NSString stringWithUTF8String: errorMessage];
 		self.parserError = [self _errorForStatus:status message:errorString value:nil];
 		yajl_free_error(_handle, errorMessage);
 		return YAJLParserStatusError;
